@@ -7,8 +7,13 @@ include Capybara::DSL
         visit 'https://starbugs.vercel.app/'
     end
 
-    def all_coffes
+    def coffee_list
         return all('.coffee-item')
+    end
+
+    def buy(coffee_name)
+        product = find('.coffee-item', text: coffee_name)
+        product.find('.buy-coffee').click
     end
     
 end
