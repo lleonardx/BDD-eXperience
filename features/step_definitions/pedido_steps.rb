@@ -2,17 +2,17 @@ Dado('que iniciei a compra do item {string}') do |product_name|
     @home.buy(product_name)
 end
   
-Quando('faço a busca do seguinte CEP: {string}') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+Quando('faço a busca do seguinte CEP: {string}') do |zipcode|
+    @checkout.find_zipcode(zipcode)
 end
 
 Quando('informo os demais dados do endereço:') do |table|
-    # table is a Cucumber::MultilineArgument::DataTable
-    pending # Write code here that turns the phrase above into concrete actions
+    @checkout.fill_address(table.rows_hash)   
 end
 
-Quando('escolho a forma de pagamento {string}') do |string|
-    pending # Write code here that turns the phrase above into concrete actions
+Quando('escolho a forma de pagamento {string}') do |payment_type|
+    find('label div', text: payment_type.upcase).click
+    sleep 5
 end
 
 Quando('por fim finalizo a compra') do
